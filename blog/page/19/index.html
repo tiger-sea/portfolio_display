@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- JS for MathJax -->
+		<script>
+		window.MathJax = {
+		  tex: {
+			inlineMath: [['$','$'], ['\\(','\\)']],
+			displayMath: [ ['$$','$$'], ["\\[","\\]"], ]
+		  },
+		  startup: {
+			ready: () => {
+					// Function to iterate over all pre and code elements
+					// if they contain TeX/LaTeX code for maths as defined
+					// by the markers in tex settings above then copy their
+					// textContent before them and remove the element from
+					// the DOM. 
+					
+					// get pre and code elements
+					var prelist = document.getElementsByTagName("pre");
+					var codelist = document.getElementsByTagName("code");
+					// get delimiters for inline and display math
+					var inline = MathJax.config.tex.inlineMath;
+					var display = MathJax.config.tex.displayMath;
+					// start building  a RegExp for each of these math types
+					var inlineRegexList = [];
+					var displayRegexList =[];
+					for(i=0;i<inline.length;i++) {
+						// https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+						delimLEsc = inline[i][0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+						//alert(delimLEsc);
+						delimREsc = inline[i][1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+						inlineRegexList.push("("+delimLEsc+")((.|[\\r\\n\\t])*?)("+delimREsc+")");
+					};
+					for(i=0;i<display.length;i++) {
+						// https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+						delimLEsc = display[i][0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+						//alert(delimLEsc);
+						delimREsc = display[i][1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+						displayRegexList.push("("+delimLEsc+")((.|[\\r\\n\\t])*?)("+delimREsc+")");
+					};
+					inlineRegExp = new RegExp(inlineRegexList.join("|"));
+					displayRegExp = new RegExp(displayRegexList.join("|"));
+					
+					// iterate over pre elements applying RegExp
+					// iterate "backwards" as we are removing elements!
+					for (i=prelist.length; i>0; i--) {
+						if(displayRegExp.test(prelist[i-1].textContent)) {
+							var t = document.createTextNode(prelist[i-1].textContent);
+							prelist[i-1].parentNode.insertBefore(t,prelist[i-1]);
+							prelist[i-1].parentNode.removeChild(prelist[i-1]);
+						}
+					}
+					// iterate over code elements applying RegExp
+					// iterate "backwards" as we are removing elements!
+					for (i=codelist.length; i>0; i--) {
+						if(inlineRegExp.test(codelist[i-1].textContent)) {
+							var t = document.createTextNode(codelist[i-1].textContent);
+							codelist[i-1].parentNode.insertBefore(t,codelist[i-1]);
+							codelist[i-1].parentNode.removeChild(codelist[i-1]);
+						}
+					}
+			  // Now process the page in MathJax
+			  MathJax.startup.defaultReady();
+			}
+		  }
+		};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+		  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+		</script>
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://tiger-sea.github.io/portfolio/style.css">
+    <link rel="stylesheet" href="https://tiger-sea.github.io/portfolio/color/green.css">
+
+    <link rel="stylesheet" href="https://tiger-sea.github.io/portfolio/font-hack-subset.css">
+
+        <link rel="shortcut icon" type="image/png" href="https:&#x2F;&#x2F;tiger-sea.github.io&#x2F;portfolio/favicon.png">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://tiger-sea.github.io/portfolio" style="text-decoration: none;">
+                    <div class="logo">
+                        
+                            It&#x27;s lights out and away we go!
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://tiger-sea.github.io/portfolio">Home</a></li>
+            
+                <li class="active"><a href="https://tiger-sea.github.io/portfolio/blog">Blog</a></li>
+            
+                <li><a href="https://tiger-sea.github.io/portfolio/archive">Archive</a></li>
+            
+                <li><a href="https://tiger-sea.github.io/portfolio/tags">Tag</a></li>
+            
+                <li><a href="https://tiger-sea.github.io/portfolio/daily">Daily</a></li>
+            
+                <li><a href="https://tiger-sea.github.io/portfolio/about">About Me</a></li>
+            
+                <li><a href="https://tiger-sea.github.io/portfolio/resume">Resume</a></li>
+            
+                <li><a href="https://tiger-sea.github.io/portfolio/contact">Contact</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+        <div class="posts">
+                <div class="post on-list">
+                    
+    <h1 class="post-title"><a href="https://tiger-sea.github.io/portfolio/blog/2023-03-27-diary/">飛び級した感想</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2023-03-27
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://tiger-sea.github.io/portfolio/tags/diary/">#diary</a></span>
+    
+
+                    
+        <div class="post-content">
+            <h2 id="arigataikotonifei-biji-dezu-ye-simasita">ありがたいことに飛び級で卒業しました</h2>
+<p>つい先日，3/22(?)に学位授与式に参加し，&quot;コンピュータ理工学&quot;という学位をもらってきました．大学の課程を終わらせるともらえる，頑張ったで賞みたいなやつです．そして僕はありがたいことに4年制大学を3年で卒業することができました．ちょっとした自慢になるかな？ならないかな？</p>
+<h2 id="zu-ye-sitagan-xiang">卒業した感想</h2>
+<p>まずは学位授与式に参加した感想ですが，学年が違うので知り合いすらいなかったです．つまらなかったし，ずっと座っていてお尻が痛かった．</p>
+<h2 id="fei-biji-sitagan-xiang">飛び級した感想</h2>
+<p>大学にはGPAという基準があります．高校で言うと通知表の1~5の評価みたいなやつですね．弊学では，そのGPAをもとに飛び級ができるかどうかが決まります．具体的には，GPAが3.75以上だと飛び級卒業ができます．</p>
+<p>まあ，今思い返すとその基準を満たすのは結構大変でした．1年生(1回生っていう大学の方が多いのかな?)の時は，飛び級制度をそもそも知りませんでしたし，体調を崩していたり，勉強をしなかったりで成績はボロボロでした．それゆえ2,3年生では成績を意識して課題とかテストは頑張っていましたが，1年次の成績が足を引っ張っていてうーんって感じでした．ただ，そこから成績は上がるだけだったので課題やテストの採点だったり，最終成績を見るのが楽しみでした．こうやって&quot;成績が良いだけでなんの技術も持たない人間&quot;が作られていくんだなーって思うこともしばしば．まあいいのよ，途中で諦めるのも負けた気がして嫌だったし，他の人と違うことをしたかったし．</p>
+<p>ただ弊学は4学期制なので，2学期制の大学よりはテスト勉強が楽だと思います(勝手な想像ですが)．あと聞くところによると弊学は良い成績を取りやすいみたいです(真偽は分かりません)．</p>
+<h2 id="etu">えっ？</h2>
+<p>あと一時期，医大への編入も考えていました．卒業研究で医学系の論文を読んだり，病理医の漫画を読んだりしているうちに，&quot;医学科行きたいなー&quot;とかずっと思ってました．なんなら今も思うことがたまにあります．その証拠として，興味本位で医学生が国試に向けた勉強をするための本を買ってしまっています．レビューブックってやつです．&quot;病気がみえる&quot;とどっちを買うか悩みました．聞く人が聞くと笑うかもしれませんが結構本気だったんです笑．でも，もっと医学の基礎の本を買うべきだったと後悔しています，買った本読んでも何もわかりません．医大で使う教科書とかどこで売ってるんですかね．ベニマル？</p>
+<p>僕が所属している研究室は医療系だと言っても医学を学ぶことはほとんどないし，扱うトピックに少々詳しくなる程度で医学の&quot;い&quot;の字もありません．来世は病理医になろうと決めています．それかどこかのタイミングで医大に行くか．そんな簡単に行ける場所でもないけど．</p>
+<p>念のために言っておくと，コンピュータサイエンスも面白くて好きですよ．医学と工学は仲良しですし．</p>
+<p>それではよい1日を</p>
+
+        </div>
+
+                </div>
+            <div class="pagination">
+                <div class="pagination__buttons">
+                    <span class="button next">
+                        <a href="https://tiger-sea.github.io/portfolio/blog/page/20/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Older posts</span>
+                        </a>
+                    </span>
+                
+                <span class="button previous">
+                    <a href="https://tiger-sea.github.io/portfolio/blog/page/18/">
+                        <span class="button__text">Newer posts</span>&nbsp;
+                        <span class="button__icon">→</span>
+                    </a>
+                </span>
+            </div>
+            </div>
+        </div>
+        
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2025
+ とらうみた :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
